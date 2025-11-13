@@ -7,7 +7,7 @@ class ToggleFavorite {
 
   ToggleFavorite(this.repository);
 
-  Future<Either<String, DeveloperEntity>> call(DeveloperEntity developer) {
+  Future<Either<String, Unit>> call(DeveloperEntity developer) {
     return repository.toggleFavorite(developer);
   }
 }
