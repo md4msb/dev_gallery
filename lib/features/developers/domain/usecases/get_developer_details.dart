@@ -7,7 +7,7 @@ class GetDeveloperDetails {
 
   GetDeveloperDetails(this.repository);
 
-  Future<Either<String, DeveloperEntity>> call(String username) {
-    return repository.getDeveloperDetails(username);
+  Future<Either<String, DeveloperEntity>> call(String username) async {
+    return await repository.getDeveloperDetails(username);
   }
 }

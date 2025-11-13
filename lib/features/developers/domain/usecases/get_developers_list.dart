@@ -10,5 +10,6 @@ class GetDevelopersList {
   Future<Either<String, List<DeveloperEntity>>> call({
     int? since,
     int perPage = 15,
-  }) => repository.getDevelopersList(since: since, perPage: perPage);
+  }) async =>
+      await repository.getDevelopersList(since: since, perPage: perPage);
 }
