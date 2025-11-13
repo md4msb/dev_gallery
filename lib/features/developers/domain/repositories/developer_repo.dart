@@ -9,7 +9,5 @@ abstract class DeveloperRepo {
 
   Future<Either<String, DeveloperEntity>> getDeveloperDetails(String username);
 
-  Future<Either<String, DeveloperEntity>> toggleFavorite(
-    DeveloperEntity developer,
-  );
+  Future<Either<String, Unit>> toggleFavorite(DeveloperEntity developer);
 }
