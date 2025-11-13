@@ -16,7 +16,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Dio Client
-  sl.registerLazySingleton(() => DioClient());
+  sl.registerLazySingleton<DioClient>(() => DioClient());
   sl.registerLazySingleton<Dio>(() => sl<DioClient>().dio);
 
   // Network Info
@@ -25,7 +25,7 @@ Future<void> init() async {
   //? Features - Developers
   // Data Sources
   sl.registerLazySingleton<DeveloperRemoteDataSource>(
-    () => DeveloperRemoteDataSourceImpl(sl()),
+    () => DeveloperRemoteDataSourceImpl(sl<Dio>()),
   );
 
   sl.registerLazySingleton<DeveloperLocalDataSource>(
@@ -35,17 +35,29 @@ Future<void> init() async {
   // Repository
   sl.registerLazySingleton<DeveloperRepo>(
     () => DeveloperRepoImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkInfo: sl(),
+      remoteDataSource: sl<DeveloperRemoteDataSource>(),
+      localDataSource: sl<DeveloperLocalDataSource>(),
+      networkInfo: sl<NetworkInfo>(),
     ),
   );
 
   // Use Cases
-  sl.registerLazySingleton(() => GetDevelopersList(sl()));
-  sl.registerLazySingleton(() => GetDeveloperDetails(sl()));
-  sl.registerLazySingleton(() => ToggleFavorite(sl()));
+  sl.registerLazySingleton<GetDevelopersList>(
+    () => GetDevelopersList(sl<DeveloperRepo>()),
+  );
+  sl.registerLazySingleton<GetDeveloperDetails>(
+    () => GetDeveloperDetails(sl<DeveloperRepo>()),
+  );
+  sl.registerLazySingleton<ToggleFavorite>(
+    () => ToggleFavorite(sl<DeveloperRepo>()),
+  );
 
-  //Bloc
-  sl.registerFactory(() => DevelopersBloc(getDevelopersList: sl()));
+  // Bloc
+  sl.registerFactory<DevelopersBloc>(
+    () => DevelopersBloc(
+      getDevelopersList: sl<GetDevelopersList>(),
+      getDeveloperDetails: sl<GetDeveloperDetails>(),
+      networkInfo: sl<NetworkInfo>(),
+    ),
+  );
 }

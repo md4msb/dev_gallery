@@ -21,43 +21,47 @@ class DevelopersLoading extends DevelopersState {
 // Loaded state
 class DevelopersLoaded extends DevelopersState {
   final List<DeveloperEntity> developers;
+  final Set<String> loadingDetails;
   final bool hasReachedMax;
   final bool isOffline;
 
   const DevelopersLoaded({
     this.developers = const [],
+    this.loadingDetails = const {},
     this.hasReachedMax = false,
     this.isOffline = false,
   });
 
   DevelopersLoaded copyWith({
     List<DeveloperEntity>? developers,
+    Set<String>? loadingDetails,
     bool? hasReachedMax,
     bool? isOffline,
   }) {
     return DevelopersLoaded(
       developers: developers ?? this.developers,
+      loadingDetails: loadingDetails ?? this.loadingDetails,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       isOffline: isOffline ?? this.isOffline,
     );
   }
 
   @override
-  List<Object?> get props => [developers, hasReachedMax, isOffline];
+  List<Object?> get props => [
+    developers,
+    loadingDetails,
+    hasReachedMax,
+    isOffline,
+  ];
 }
 
 /// Error state
 class DevelopersError extends DevelopersState {
   final String message;
-  final List<DeveloperEntity>? cachedDevelopers;
   final bool isOffline;
 
-  const DevelopersError({
-    required this.message,
-    this.cachedDevelopers,
-    this.isOffline = false,
-  });
+  const DevelopersError({required this.message, this.isOffline = false});
 
   @override
-  List<Object?> get props => [message, cachedDevelopers, isOffline];
+  List<Object?> get props => [message, isOffline];
 }
