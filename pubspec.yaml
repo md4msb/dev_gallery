@@ -48,12 +48,16 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 
-  # Functional Programming & Error Handling
+  # Functional Programming
   dartz: ^0.10.1
   equatable: ^2.0.7
 
   # Dependency Injection
   get_it: ^9.0.5
+
+  # UI
+  gap: ^3.0.1
+  cached_network_image: ^3.4.1
 
   flutter_hooks: ^0.21.3+1
 
