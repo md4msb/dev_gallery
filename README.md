@@ -8,19 +8,20 @@ The project follows Clean Architecture with BLoC state management, Dio for netwo
 ## 📦 Setup Instructions
 
 1. **Clone the repository**
-
+```sh
 git clone https://github.com/md4msb/dev_gallery.git
-
 cd dev_gallery
+```
 
 2. **Install dependencies**
-
+```sh
 flutter pub get
+```
 
 3. **Run the app**
-
+```sh
 flutter run
-
+```
 No additional configuration is required.  
 Hive initializes automatically on app startup.
 
