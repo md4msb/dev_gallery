@@ -1,7 +1,6 @@
 import 'package:dev_gallery/features/developers/presentation/screens/developer_detail_screen.dart';
 import 'package:dev_gallery/features/developers/presentation/screens/developers_screen.dart';
 import 'package:dev_gallery/features/developers/presentation/screens/favorites_screen.dart';
-import 'package:dev_gallery/features/developers/presentation/screens/search_screen.dart';
 import 'package:dev_gallery/main_app_shell.dart';
 import 'package:dev_gallery/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -27,17 +26,6 @@ final GoRouter appRouter = GoRouter(
               path: '/home',
               name: RouteNames.home,
               builder: (context, state) => const DevelopersScreen(),
-            ),
-          ],
-        ),
-
-        /// Search tab
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/search',
-              name: RouteNames.search,
-              builder: (context, state) => const SearchScreen(),
             ),
           ],
         ),

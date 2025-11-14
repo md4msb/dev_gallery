@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'developers_bloc.dart';
 
 abstract class DevelopersEvent extends Equatable {
   const DevelopersEvent();
@@ -27,4 +27,12 @@ class NetworkStatusChanged extends DevelopersEvent {
 
   @override
   List<Object?> get props => [isConnected];
+}
+
+class SearchDevelopers extends DevelopersEvent {
+  final String query;
+  const SearchDevelopers(this.query);
+
+  @override
+  List<Object?> get props => [query];
 }

@@ -8,6 +8,8 @@ class DeveloperEntity extends Equatable {
   final int? followers;
   final int? following;
   final int? publicRepos;
+  final String? location;
+  final DateTime? createdAt;
   final bool isFavorite;
 
   const DeveloperEntity({
@@ -18,6 +20,8 @@ class DeveloperEntity extends Equatable {
     this.followers,
     this.following,
     this.publicRepos,
+    this.location,
+    this.createdAt,
     this.isFavorite = false,
   });
 
@@ -30,6 +34,8 @@ class DeveloperEntity extends Equatable {
     followers,
     following,
     publicRepos,
+    location,
+    createdAt,
     isFavorite,
   ];
 }
