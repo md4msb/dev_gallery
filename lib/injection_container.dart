@@ -4,6 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'core/network/dio_client.dart';
 import 'core/network/network_info.dart';
+import 'features/dev_repos_list/data/datasources/repo_remote_data_source.dart';
+import 'features/dev_repos_list/data/repository_impl/repo_repository_impl.dart';
+import 'features/dev_repos_list/domain/repositories/repo_list_repository.dart';
+import 'features/dev_repos_list/domain/usecases/get_repos_list.dart';
+import 'features/dev_repos_list/presentation/bloc/repo_bloc.dart';
 import 'features/developers/data/datasources/developer_remote_data_source.dart';
 import 'features/developers/data/datasources/developer_local_data_source.dart';
 import 'features/developers/data/repository_impl/developer_repo_impl.dart';
@@ -42,7 +47,7 @@ Future<void> init() async {
     ),
   );
 
-  // Use Cases
+  // UseCases
   sl.registerLazySingleton<GetDevelopersList>(
     () => GetDevelopersList(sl<DeveloperRepo>()),
   );
@@ -60,8 +65,28 @@ Future<void> init() async {
       networkInfo: sl<NetworkInfo>(),
     ),
   );
-
   sl.registerFactory<DeveloperDetailBloc>(
     () => DeveloperDetailBloc(getDeveloperDetails: sl<GetDeveloperDetails>()),
+  );
+
+  //? Features - Developer's Repos List
+  // Data source
+  sl.registerLazySingleton<RepoRemoteDataSource>(
+    () => RepoRemoteDataSourceImpl(sl<Dio>()),
+  );
+
+  // Repository
+  sl.registerLazySingleton<RepoListRepository>(
+    () => RepoRepositoryImpl(sl<RepoRemoteDataSource>()),
+  );
+
+  // Usecase
+  sl.registerLazySingleton<GetReposList>(
+    () => GetReposList(sl<RepoListRepository>()),
+  );
+
+  // Bloc
+  sl.registerFactory<RepoBloc>(
+    () => RepoBloc(getReposList: sl<GetReposList>()),
   );
 }
