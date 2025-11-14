@@ -1,3 +1,4 @@
+import 'package:dev_gallery/features/developers/presentation/bloc/developer_detail_bloc/developer_detail_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -10,7 +11,7 @@ import 'features/developers/domain/repositories/developer_repo.dart';
 import 'features/developers/domain/usecases/get_developers_list.dart';
 import 'features/developers/domain/usecases/get_developer_details.dart';
 import 'features/developers/domain/usecases/toggle_favorite.dart';
-import 'features/developers/presentation/bloc/developers_bloc.dart';
+import 'features/developers/presentation/bloc/developers_bloc/developers_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -56,8 +57,11 @@ Future<void> init() async {
   sl.registerFactory<DevelopersBloc>(
     () => DevelopersBloc(
       getDevelopersList: sl<GetDevelopersList>(),
-      getDeveloperDetails: sl<GetDeveloperDetails>(),
       networkInfo: sl<NetworkInfo>(),
     ),
+  );
+
+  sl.registerFactory<DeveloperDetailBloc>(
+    () => DeveloperDetailBloc(getDeveloperDetails: sl<GetDeveloperDetails>()),
   );
 }
