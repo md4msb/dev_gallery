@@ -20,12 +20,14 @@ class DevelopersLoading extends DevelopersState {
 // Loaded state
 class DevelopersLoaded extends DevelopersState {
   final List<DeveloperEntity> developers;
+  final List<DeveloperEntity> searchDevs;
   // final Set<String> loadingDetails;
   final bool hasReachedMax;
   final bool isOffline;
 
   const DevelopersLoaded({
     this.developers = const [],
+    this.searchDevs = const [],
     // this.loadingDetails = const {},
     this.hasReachedMax = false,
     this.isOffline = false,
@@ -33,12 +35,14 @@ class DevelopersLoaded extends DevelopersState {
 
   DevelopersLoaded copyWith({
     List<DeveloperEntity>? developers,
+    List<DeveloperEntity>? searchDevs,
     // Set<String>? loadingDetails,
     bool? hasReachedMax,
     bool? isOffline,
   }) {
     return DevelopersLoaded(
       developers: developers ?? this.developers,
+      searchDevs: searchDevs ?? this.searchDevs,
       // loadingDetails: loadingDetails ?? this.loadingDetails,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       isOffline: isOffline ?? this.isOffline,
@@ -48,6 +52,7 @@ class DevelopersLoaded extends DevelopersState {
   @override
   List<Object?> get props => [
     developers,
+    searchDevs,
     // loadingDetails,
     hasReachedMax,
     isOffline,

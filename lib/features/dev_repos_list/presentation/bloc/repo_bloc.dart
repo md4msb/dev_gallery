@@ -10,8 +10,8 @@ class RepoBloc extends Bloc<RepoEvent, RepoState> {
   final GetReposList _getReposList;
 
   RepoBloc({required GetReposList getReposList})
-      : _getReposList = getReposList,
-        super(RepoInitial()) {
+    : _getReposList = getReposList,
+      super(RepoInitial()) {
     on<FetchRepos>(_onFetchRepos);
   }
 

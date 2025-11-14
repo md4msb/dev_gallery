@@ -16,10 +16,6 @@ class MainAppShell extends StatelessWidget {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
           NavigationDestination(
-            icon: Icon(Icons.search_outlined),
-            label: 'Search',
-          ),
-          NavigationDestination(
             icon: Icon(Icons.favorite_outline),
             label: 'Favorites',
           ),

@@ -17,6 +17,7 @@ class DevelopersBloc extends Bloc<DevelopersEvent, DevelopersState> {
     : super(const DevelopersInitial()) {
     on<FetchDevelopers>(_onFetchDevelopers);
     on<NetworkStatusChanged>(_onNetworkChanged);
+    on<SearchDevelopers>(_onSearchDevelopers);
 
     // Listen for connectivity changes
     _networkSub = networkInfo.onStatusChange.listen((connected) {
@@ -34,8 +35,32 @@ class DevelopersBloc extends Bloc<DevelopersEvent, DevelopersState> {
 
     result.fold(
       (error) => emit(DevelopersError(message: error)),
-      (developers) => emit(DevelopersLoaded(developers: developers)),
+      (developers) => emit(
+        DevelopersLoaded(developers: developers, searchDevs: developers),
+      ),
     );
+  }
+
+  Future<void> _onSearchDevelopers(
+    SearchDevelopers event,
+    Emitter<DevelopersState> emit,
+  ) async {
+    if (state is DevelopersLoaded) {
+      final current = state as DevelopersLoaded;
+      final query = event.query.trim().toLowerCase();
+
+      // If empty query show full list
+      if (query.isEmpty) {
+        emit(current.copyWith(searchDevs: current.developers));
+        return;
+      }
+
+      final filtered = current.developers
+          .where((dev) => dev.username.toLowerCase().contains(query))
+          .toList();
+
+      emit(current.copyWith(searchDevs: filtered));
+    }
   }
 
   void _onNetworkChanged(
