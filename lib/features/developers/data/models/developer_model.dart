@@ -27,6 +27,12 @@ class DeveloperModel extends HiveObject {
   final int? publicRepos;
 
   @HiveField(7)
+  final String? location;
+
+  @HiveField(8)
+  final DateTime? createdAt;
+
+  @HiveField(9)
   final bool isFavorite;
 
   DeveloperModel({
@@ -37,6 +43,8 @@ class DeveloperModel extends HiveObject {
     this.followers,
     this.following,
     this.publicRepos,
+    this.location,
+    this.createdAt,
     this.isFavorite = false,
   });
 
@@ -50,21 +58,11 @@ class DeveloperModel extends HiveObject {
       followers: json['followers'],
       following: json['following'],
       publicRepos: json['public_repos'],
+      location: json['location'],
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
     );
-  }
-
-  // Convert model to JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'login': username,
-      'avatar_url': avatarUrl,
-      'name': name,
-      'bio': bio,
-      'followers': followers,
-      'following': following,
-      'public_repos': publicRepos,
-      'isFavorite': isFavorite,
-    };
   }
 
   // Convert to domain entity
@@ -77,6 +75,8 @@ class DeveloperModel extends HiveObject {
       followers: followers,
       following: following,
       publicRepos: publicRepos,
+      location: location,
+      createdAt: createdAt,
       isFavorite: isFavorite,
     );
   }
@@ -91,6 +91,8 @@ class DeveloperModel extends HiveObject {
       followers: entity.followers,
       following: entity.following,
       publicRepos: entity.publicRepos,
+      location: entity.location,
+      createdAt: entity.createdAt,
       isFavorite: entity.isFavorite,
     );
   }
