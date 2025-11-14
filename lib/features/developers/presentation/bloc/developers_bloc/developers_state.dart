@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../domain/entities/developer_entity.dart';
+import '../../../domain/entities/developer_entity.dart';
 
 abstract class DevelopersState extends Equatable {
   const DevelopersState();
@@ -21,26 +21,26 @@ class DevelopersLoading extends DevelopersState {
 // Loaded state
 class DevelopersLoaded extends DevelopersState {
   final List<DeveloperEntity> developers;
-  final Set<String> loadingDetails;
+  // final Set<String> loadingDetails;
   final bool hasReachedMax;
   final bool isOffline;
 
   const DevelopersLoaded({
     this.developers = const [],
-    this.loadingDetails = const {},
+    // this.loadingDetails = const {},
     this.hasReachedMax = false,
     this.isOffline = false,
   });
 
   DevelopersLoaded copyWith({
     List<DeveloperEntity>? developers,
-    Set<String>? loadingDetails,
+    // Set<String>? loadingDetails,
     bool? hasReachedMax,
     bool? isOffline,
   }) {
     return DevelopersLoaded(
       developers: developers ?? this.developers,
-      loadingDetails: loadingDetails ?? this.loadingDetails,
+      // loadingDetails: loadingDetails ?? this.loadingDetails,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       isOffline: isOffline ?? this.isOffline,
     );
@@ -49,7 +49,7 @@ class DevelopersLoaded extends DevelopersState {
   @override
   List<Object?> get props => [
     developers,
-    loadingDetails,
+    // loadingDetails,
     hasReachedMax,
     isOffline,
   ];

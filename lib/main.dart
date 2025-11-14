@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Dev Gallery',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
     );

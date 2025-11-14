@@ -1,7 +1,7 @@
-import 'package:dev_gallery/features/developers/presentation/screen/developer_detail_screen.dart';
-import 'package:dev_gallery/features/developers/presentation/screen/developers_screen.dart';
-import 'package:dev_gallery/features/developers/presentation/screen/favorites_screen.dart';
-import 'package:dev_gallery/features/developers/presentation/screen/search_screen.dart';
+import 'package:dev_gallery/features/developers/presentation/screens/developer_detail_screen.dart';
+import 'package:dev_gallery/features/developers/presentation/screens/developers_screen.dart';
+import 'package:dev_gallery/features/developers/presentation/screens/favorites_screen.dart';
+import 'package:dev_gallery/features/developers/presentation/screens/search_screen.dart';
 import 'package:dev_gallery/main_app_shell.dart';
 import 'package:dev_gallery/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -57,11 +57,11 @@ final GoRouter appRouter = GoRouter(
 
     /// Developer detail page
     GoRoute(
-      path: RouteNames.developerDetails,
-      name: 'developerDetails',
+      name: RouteNames.developerDetails,
+      path: '/developer/:username',
       builder: (context, state) {
-        // final username = state.pathParameters['username']!;
-        return DeveloperDetailScreen();
+        final username = state.pathParameters['username']!;
+        return DeveloperDetailScreen(username: username);
       },
     ),
   ],

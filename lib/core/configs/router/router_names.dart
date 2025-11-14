@@ -5,5 +5,5 @@ class RouteNames {
   static const home = 'home';
   static const search = 'search';
   static const favorites = 'favorites';
-  static const developerDetails = 'developer_detail';
+  static const developerDetails = 'developer-detail';
 }
