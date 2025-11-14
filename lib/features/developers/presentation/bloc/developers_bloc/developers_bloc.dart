@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:dev_gallery/core/network/network_info.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'developers_event.dart';
-import 'developers_state.dart';
+import '../../../domain/entities/developer_entity.dart';
 import '../../../domain/usecases/get_developers_list.dart';
+part 'developers_event.dart';
+part 'developers_state.dart';
 
 class DevelopersBloc extends Bloc<DevelopersEvent, DevelopersState> {
   final GetDevelopersList getDevelopersList;
@@ -11,10 +13,8 @@ class DevelopersBloc extends Bloc<DevelopersEvent, DevelopersState> {
 
   StreamSubscription? _networkSub;
 
-  DevelopersBloc({
-    required this.getDevelopersList,
-    required this.networkInfo,
-  }) : super(const DevelopersInitial()) {
+  DevelopersBloc({required this.getDevelopersList, required this.networkInfo})
+    : super(const DevelopersInitial()) {
     on<FetchDevelopers>(_onFetchDevelopers);
     on<NetworkStatusChanged>(_onNetworkChanged);
 

@@ -104,7 +104,6 @@ class DevProfileSection extends StatelessWidget {
             ),
           ],
         ),
-        Gap(16),
       ],
     ).p(16);
   }

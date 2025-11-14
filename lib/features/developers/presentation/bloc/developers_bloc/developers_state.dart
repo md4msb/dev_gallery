@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import '../../../domain/entities/developer_entity.dart';
+part of 'developers_bloc.dart';
 
 abstract class DevelopersState extends Equatable {
   const DevelopersState();

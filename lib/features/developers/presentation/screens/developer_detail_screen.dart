@@ -1,5 +1,6 @@
 import 'package:dev_gallery/core/configs/theme/app_typography.dart';
 import 'package:dev_gallery/core/extentions/extentions.dart';
+import 'package:dev_gallery/features/dev_repos_list/presentation/widgets/repos_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -46,8 +47,11 @@ class DeveloperDetailScreen extends HookWidget {
                   style: AppTypography.body.copyWith(color: Colors.redAccent),
                 ),
               ).p(16),
-              DevDetailLoaded() => DevProfileSection(
-                developer: state.developer,
+              DevDetailLoaded() => Column(
+                children: [
+                  DevProfileSection(developer: state.developer),
+                  ReposListview(username: username),
+                ],
               ),
               _ => const SizedBox(),
             };

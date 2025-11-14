@@ -1,4 +1,5 @@
-import 'package:equatable/equatable.dart';
+part of 'developers_bloc.dart';
+
 
 abstract class DevelopersEvent extends Equatable {
   const DevelopersEvent();

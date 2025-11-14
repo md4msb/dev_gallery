@@ -1,9 +1,9 @@
-import 'package:dev_gallery/core/configs/theme/app_colors.dart';
-import 'package:dev_gallery/core/configs/theme/app_radius.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import '../configs/theme/app_colors.dart';
+import '../configs/theme/app_radius.dart';
 
-class DeveloperTile extends StatelessWidget {
+class AppTile extends StatelessWidget {
   final Function()? onTap;
   final Widget? leading;
   final Widget? title;
@@ -11,7 +11,7 @@ class DeveloperTile extends StatelessWidget {
   final Widget? body;
   final Widget? trailing;
 
-  const DeveloperTile({
+  const AppTile({
     super.key,
     this.onTap,
     this.leading,
@@ -58,6 +58,3 @@ class DeveloperTile extends StatelessWidget {
     );
   }
 }
-    // final secondary = Theme.of(context).brightness == Brightness.dark
-    //     ? AppColors.textSecondaryDark
-    //     : AppColors.textSecondaryLight;
