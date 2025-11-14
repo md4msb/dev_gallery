@@ -103,6 +103,10 @@ BLoC gives the project long-term stability and enterprise-level structure.
   <img src="assets/screens/light_theme.png" width="30%" />
 </p>
 
+## 🎥 Demo Video
+
+https://github.com/user-attachments/assets/f0d156ca-0344-4bc6-a104-e4c4973ac5a5
+
 ---
 
 ## 📝 Notes
